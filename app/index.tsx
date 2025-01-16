@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { ScrollView, View, Text, StyleSheet } from "react-native";
 import RecipeForm from "./components/RecipeForm";
 import RecipeSuggestions from "./components/RecipeSuggestions";
 
@@ -7,15 +7,20 @@ export default function Index() {
   const [suggestions, setSuggestions] = useState<string>("");
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>🍠 Swad AI 🌶️</Text>
-      <RecipeForm setSuggestions={setSuggestions} />
-      {suggestions ? <RecipeSuggestions suggestions={suggestions} /> : null}
-    </View>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        <Text style={styles.header}>🍠 Swad AI 🌶️</Text>
+        <RecipeForm setSuggestions={setSuggestions} />
+        {suggestions ? <RecipeSuggestions suggestions={suggestions} /> : null}
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+  },
   container: {
     flex: 1,
     padding: 20,
